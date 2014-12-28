@@ -1,0 +1,46 @@
+application: nyt-api-articles
+version: 4
+runtime: python27
+api_version: 1
+threadsafe: false
+
+default_expiration: "30d"
+
+handlers:
+- url: /(.*\.css)
+  mime_type: text/css
+  static_files: static/\1
+  upload: static/(.*\.css)
+
+- url: /(.*\.html)
+  mime_type: text/html
+  static_files: static/\1
+  upload: static/(.*\.html)
+  expiration: "1h"
+
+- url: /js
+  static_dir: static/js
+
+- url: /data
+  static_dir: static/data
+
+- url: /app.js
+  static_files: static/app.js
+  upload: static/app.js
+
+# index files
+- url: /(.+)/
+  static_files: static/\1/index.html
+  upload: static/(.+)/index.html
+  expiration: "15m"
+
+- url: /(.+)
+  static_files: static/\1/index.html
+  upload: static/(.+)/index.html
+  expiration: "15m"
+
+# site root
+- url: /
+  static_files: static/index.html
+  upload: static/index.html
+  expiration: "15m"
