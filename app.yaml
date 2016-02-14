@@ -1,5 +1,5 @@
-application: nyt-api-articles
-version: 1
+application: what-do-you-fear
+version: 3
 runtime: python27
 api_version: 1
 threadsafe: false
@@ -23,6 +23,9 @@ handlers:
 
 - url: /data
   static_dir: static/data
+
+- url: /img
+  static_dir: static/img
 
 - url: /app.js
   static_files: static/app.js
